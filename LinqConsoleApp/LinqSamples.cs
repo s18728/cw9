@@ -194,7 +194,7 @@ namespace LinqConsoleApp
             //    if (emp.Job == "Backend programmer") res.Add(emp);
             //}
             Console.WriteLine("=============Przyklad 1");
-            Console.WriteLine("==Query");
+            Console.WriteLine("\n==Query");
             //1. Query syntax (SQL)
             var res = from emp in Emps 
                 where emp.Job == "Backend programmer"
@@ -205,7 +205,7 @@ namespace LinqConsoleApp
             }
 
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
             //2. Lambda and Extension methods
             var res2 = Emps.Where(e => e.Job == "Backend programmer");
             foreach (Emp emp in res2)
@@ -220,8 +220,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad2()
         {
-            Console.WriteLine("=============Przyklad 2");
-            Console.WriteLine("==Query");
+            Console.WriteLine("\n=============Przyklad 2");
+            Console.WriteLine("\n==Query");
             var res = from emp in Emps
                             where emp.Job == "Frontend programmer" && emp.Salary > 1000
                             orderby emp.Ename descending
@@ -232,7 +232,7 @@ namespace LinqConsoleApp
                 Console.WriteLine(emp);
             }
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
             var res2 = Emps
                 .Where(e => e.Job == "Frontend programmer" && e.Salary > 1000)
                 .OrderByDescending(e => e.Ename);
@@ -248,9 +248,9 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad3()
         {
-            Console.WriteLine("=============Przyklad 3");
+            Console.WriteLine("\n=============Przyklad 3");
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
             var res = Emps.Max(e => e.Salary);
             Console.WriteLine(res);
         }
@@ -260,8 +260,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad4()
         {
-            Console.WriteLine("=============Przyklad 4");
-            Console.WriteLine("==Query");
+            Console.WriteLine("\n=============Przyklad 4");
+            Console.WriteLine("\n==Query");
             var res = from emp in Emps
                             where emp.Salary == Emps.Max(e => e.Salary)
                             select emp;
@@ -271,7 +271,7 @@ namespace LinqConsoleApp
                 Console.WriteLine(emp);
             }
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
             var res2 = Emps.Where(e => e.Salary == Emps.Max(e1 => e1.Salary));
 
             foreach (Emp emp in res2)
@@ -285,8 +285,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad5()
         {
-            Console.WriteLine("=============Przyklad 5");
-            Console.WriteLine("==Query");
+            Console.WriteLine("\n=============Przyklad 5");
+            Console.WriteLine("\n==Query");
             var res = from emp in Emps
                             select new
                             {
@@ -299,7 +299,7 @@ namespace LinqConsoleApp
                 Console.WriteLine(re);
             }
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
 
             var res2 = Emps.Select(e => new {Nazwisko = e.Ename, Praca = e.Job});
 
@@ -317,8 +317,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad6()
         {
-            Console.WriteLine("=============Przyklad 6");
-            Console.WriteLine("==Query");
+            Console.WriteLine("\n=============Przyklad 6");
+            Console.WriteLine("\n==Query");
             var res = from emp in Emps
                 join dept in Depts on emp.Deptno equals dept.Deptno
                 select new
@@ -333,7 +333,7 @@ namespace LinqConsoleApp
                 Console.WriteLine(re);
             }
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
             var res2 = Emps.Join(Depts, emp => emp.Deptno, dept => dept.Deptno,
                 (emp, dept) => new {emp.Ename, emp.Job, dept.Dname});
 
@@ -350,8 +350,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad7()
         {
-            Console.WriteLine("=============Przyklad 7");
-            Console.WriteLine("==Query");
+            Console.WriteLine("\n=============Przyklad 7");
+            Console.WriteLine("\n==Query");
 
             var res = from emp in Emps
                 group emp by emp.Job
@@ -366,7 +366,7 @@ namespace LinqConsoleApp
                 Console.WriteLine(re);   
             }
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
 
             var res2 = Emps.GroupBy(e => e.Job).Select(praca => new
             {
@@ -387,8 +387,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad8()
         {
-            Console.WriteLine("=============Przyklad 8");
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n=============Przyklad 8");
+            Console.WriteLine("\n==Lambda");
             var res = Emps.Any(e => e.Job == "Backend programmer");
             Console.WriteLine(res);
         }
@@ -399,8 +399,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad9()
         {
-            Console.WriteLine("=============Przyklad 9");
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n=============Przyklad 9");
+            Console.WriteLine("\n==Lambda");
 
             var res = Emps
                 .Where(e => e.Job == "Frontend programmer")
@@ -417,8 +417,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad10Button_Click()
         {
-            Console.WriteLine("=============Przyklad 10");
-            Console.WriteLine("==Query");
+            Console.WriteLine("\n=============Przyklad 10");
+            Console.WriteLine("\n==Query");
             var res = from emp in Emps
                     .Union(new List<Emp> {new Emp {Ename = "Brak wartości", Job = null, HireDate = null}})
                 select new
@@ -433,7 +433,7 @@ namespace LinqConsoleApp
                 Console.WriteLine(re);
             }
 
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n==Lambda");
             var res2 = Emps
                 .Union(new List<Emp> {new Emp {Ename = "Brak wartości", Job = null, HireDate = null}})
                 .Select(e => new {e.Ename, e.Job, e.HireDate});
@@ -447,8 +447,8 @@ namespace LinqConsoleApp
         //Znajdź pracownika z najwyższą pensją wykorzystując metodę Aggregate()
         public void Przyklad11()
         {
-            Console.WriteLine("=============Przyklad 11");
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n=============Przyklad 11");
+            Console.WriteLine("\n==Lambda");
 
             var res = Emps.Aggregate((res, next) =>
             {
@@ -464,8 +464,8 @@ namespace LinqConsoleApp
         //typu CROSS JOIN
         public void Przyklad12()
         {
-            Console.WriteLine("=============Przyklad 12");
-            Console.WriteLine("==Lambda");
+            Console.WriteLine("\n=============Przyklad 12");
+            Console.WriteLine("\n==Lambda");
 
             var res = Emps.SelectMany(e => Depts, (e, d) => new
             {
